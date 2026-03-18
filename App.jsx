@@ -3,6 +3,8 @@ import "./index.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import home from './assets/home.jpg';
+import about1 from './assets/about1.jpg'
+import info from './assets/info.png'
 
 function App() {
 
@@ -71,18 +73,31 @@ function App() {
       {/* ABOUT */}
       <section id="about" className="min-h-screen px-6 py-20">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
-          <div data-aos="zoom-in" className="h-100 bg-gray-200 flex items-center justify-center">IMAGE HERE</div>
-          <div data-aos="fade-up">
-            <h2 className="text-4xl font-bold mb-4">About</h2>
-            <p className="text-gray-600">Drafting Dreams was established last July 13, 2025.<br/>
-                <span>Since then the page started to accept several projects including<br/></span>
-                <span className="font-bold">2D CAD drawings </span> including Mechanical, Plumbing, Sanitary, <br/> Electrical and Structural,
-                and
-                <span className="font-bold"> 3D rendering </span> including Interior and Exterior.<br/>
 
-            </p>
+          <div data-aos="zoom-in" className="h-100 flex items-center justify-center">
+            <img src={about1} alt="aboutwan" className="rounded-3xl"/>
+          </div>
+
+          <div data-aos="fade-up">
+            <div className="md:p-10 md:m-10 m-2">
+              <div className="flex gap-3 mb-5">
+                <img src={info} alt="eynpu" className="w-12 rounded-full"/>
+                <h2 className="text-4xl font-bold mb-4 justify-center">About</h2>
+              </div>
+
+              <div className="items-center justify-center font-sans text-pretty text-gray-950">
+                <p className="text-gray-600">Drafting Dreams was established last July 13, 2025.<br/>
+                  <span>Since then the page started to accept several projects including<br/></span>
+                  <span className="font-bold">2D CAD drawings </span> including Mechanical, Plumbing, Sanitary, <br/> Electrical and Structural,
+                  and
+                  <span className="font-bold"> 3D rendering </span> including Interior and Exterior.<br/>
+                </p>
+            </div>
+
           </div>
         </div>
+
+      </div>
       </section>
 
       {/* SERVICES */}
