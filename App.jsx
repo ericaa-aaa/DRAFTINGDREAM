@@ -8,6 +8,8 @@ import info from './assets/info.png'
 
 function App() {
 
+  const [activeTab, setActiveTab] = useState("2D", "3D");
+
   const [menuOpen, setMenuOpen] = useState(false);
     useEffect(()=> {
       AOS.init({
@@ -103,15 +105,118 @@ function App() {
       {/* SERVICES */}
       <section id="services" className="min-h-screen px-6 py-20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12" data-aos="fade-up">Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1,2,3].map((item) => (
-              <div key={item} data-aos="fade-up" className="p-6 border rounded-2xl hover:shadow-xl transition bg-white">
-                <h3 className="text-xl font-semibold mb-2"> Service Title</h3>
-                <p className="text-gray-600">Descript</p>
-              </div>
-            ))}
+
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl text-gray-800 font-bold mb-12" data-aos="fade-up">Our Services and Rates</h2>
+            <p className="text-white mt-3">CAD Drafting and 3D visualization solutions with transparent pricing.</p>
           </div>
+
+          <div className="flex justify-center mb-10">
+            <div className="bg-white shadow-md rounded-full p-2 flex gap-2">
+              <button onClick={() => setActiveTab("2D")} className={`px-6 py-2 rounded-full font-medium transition ${ activeTab === "2D" ? "bg-amber-600 text-white" : "text-amber-700 hover:bg-amber-100"}`}>
+                2D CAD Drafting
+              </button>
+
+              <button 
+                onClick={() => setActiveTab("3D")}
+                className={`px-6 py-2 rounded-full font-medium transition ${
+                  activeTab === "3D"
+                  ? "bg-amber-600 text-white"
+                : "text-amber-700 hover:bg-amber-100"}`}>3D Rendering
+              </button>
+            </div>
+          </div>
+
+          {activeTab === "2D" && (
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-2xl shadow-md">
+                <h3 className="text-xl font-semibold text-amber-600 mb-4">Services Included</h3>
+                <ul className="space-y-2 text-amber-700">
+                  <li>Mechanical</li>
+                  <li>Electrical</li>
+                  <li>Plumbing</li>
+                  <li>Structural</li>
+                  <li>Sanitary</li>
+                  <li>Elevations & Sections</li>
+                </ul>
+                    <div className="mt-6">
+                      <p className="text-sm text-amber-900">Tools used:</p>
+                      <span className="inline-block mt-12 bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">AutoCAD</span>
+                    </div>
+              </div> 
+{/* PRICCEEEEEE */}
+              <div className="bg-white p-8 rounded-2xl shadow-md">
+                <h3 className="text-xl font-semibold">Rates</h3>
+                  <div className="space-y-4">
+                    <div className="border p-4 rounded-lg">
+                      <h4 className="font-semibold">Basic Plan</h4>
+                      <p className="text-sm text-amber-700">Simple Drawings /Single Layout</p>
+                      <p className="text-lg font-bold">₱800 - ₱1,500</p>
+                    </div>
+
+                      <div className="border p-4 rounded-lg">
+                        <h4 className="font-semibold">Standard Plan</h4>
+                        <p className="text-sm text-amber-700">Detailed Plan with revisions</p>
+                        <p className="text-lg font-bold">₱2,000 - ₱5,000</p>
+                      </div>
+
+                      <div className="border p-4 rounded-lg">
+                        <h4 className="font-semibold">Premium Plan</h4>
+                        <p className="text-sm text-amber-700">Complete Set (Multi-discipline)</p>
+                        <p className="text-lg font-bold">₱6,000</p>
+                      </div>
+
+                  </div>
+              </div>
+            </div>
+          )}
+
+              {activeTab === "3D" && (
+                <div className="grid md:grid-cols-2 gap-8">
+              {/* SERVICEEEEE */}
+              <div className="bg-white p-8 rounded-2xl shadow-md">
+                <h3 className="text-xl font-semibold text-amber-600 mb-4">Services Included</h3>
+                <ul className="space-y-2 text-amber-600">
+                  <li>Interior Rendering</li>
+                  <li>Exterior Rendering</li>
+                </ul>
+
+                <div className="mt-6">
+                  <p className="text-sm text-amber-500">Tools Used:</p>
+                    <div className="flex flex-wrap gap-2 mt-2 justify-center">
+                      <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full">SketchUp</span>
+                      <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full">CAD</span>
+                      <span className="bg-amber-100 text-amber-600 px-3 py-1 rounded-full">Enscape</span>
+                    </div>
+                </div>
+              </div>
+              {/*price ng 3d service*/}
+                <div className="bg-white p-8 rounded-2xl">
+                  <h3 className="text-xl font-semibold text-amber-800 mb-4">Rates</h3>
+                    <div className="space-y-4">
+                      <div className="border p-4 rounded-lg">
+                        <h4 className="font-semibold">Basic Render</h4>
+                          <p className="text-sm text-amber-600">1-2 views, low complexity</p>
+                          <p className="text-lg font-bold mt-2">₱1,500 - ₱3,500</p>
+                      </div>
+
+                      <div className="border p-4 rounded-lg">
+                        <h4 className="font-semibold">Standard Render</h4>
+                          <p className="text-sm text-amber-600">Multiple views, medium detail</p>
+                          <p className="text-lg font-bold mt-2">₱4,000 - ₱8,000</p>
+                      </div>
+
+                      <div className="border p-4 rounded-lg">
+                        <h4 className="font-semibold">Premium Render</h4>
+                          <p className="text-sm text-amber-600">High-quality, realistic rendering</p>
+                          <p className="text-lg font-bold mt-2">₱10,000</p>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+            
+              )}
         </div>
       </section>
 
