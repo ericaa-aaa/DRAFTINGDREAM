@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animated-bg{
+background: linear-gradient(#FFF8f0,#C08552,#8C5A3C,#4B2E2B);
+background-size:300% 200%;
+animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.sectionTitle{
+@apply text-4xl font-bold bg-clip-text text-transparent;
+}
