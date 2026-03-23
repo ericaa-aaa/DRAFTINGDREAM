@@ -5,8 +5,58 @@ import 'aos/dist/aos.css';
 import home from './assets/home.jpg';
 import about1 from './assets/about1.jpg'
 import info from './assets/info.png'
+/*import int1 from './assets/int1.jpg'
+import int2 from './assets/int2.jpg'
+import ext1 from './assets/ext1.jpg'
+import mech1 from './assets/mech1.jpg'
+import elec1 from './assets/elec1.jpg'*/
 
 function App() {
+
+  const [view, setView] = useState("categories");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const categories = [
+    { name: "Mechanical", image: "/images/mech1.jpg" },
+    { name: "Electrical", image: "/images/elec1.jpg" },
+    { name: "Plumbing", image: "/images/plumbing1.jpg" },
+    { name: "Structural", image: "/images/structural1.jpg" },
+    { name: "Sanitary", image: "/images/sanitary1.jpg" },
+    { name: "Elevations & Sections", image: "/images/elevation1.jpg" },
+    { name: "Interior", image: "/images/int1.jpg" },
+    { name: "Exterior", image: "/images/ext1.jpg" },
+  ];
+
+  const worksData = {
+    Mechanical: [
+      "/images/mech1.jpg",
+      "/images/mechanical2.jpg",
+    ],
+    Electrical: [
+      "/images/elec1.jpg",
+      "/images/electrical2.jpg",
+    ],
+    Plumbing: [
+      "/images/plumbing1.jpg",
+    ],
+    Structural: [
+      "/images/structural1.jpg",
+    ],
+    Sanitary: [
+      "/images/sanitary1.jpg",
+    ],
+    "Elevations & Sections": [
+      "/images/elevation1.jpg",
+    ],
+    Interior: [
+      "/images/int1.jpg",
+      "/images/int2.jpg",
+    ],
+    Exterior: [
+      "/images/ext1.jpg",
+    ],
+  };
 
   const [activeTab, setActiveTab] = useState("2D", "3D");
 
@@ -58,9 +108,10 @@ function App() {
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">DRAFTING DREAMS</h1>
             <p className="mt-4 text-md text-gray-600 md:text-2xl lg:text-2xl">Offering clean, affordable CAD drawings
               for small projects and school needs.</p>
-            <button className="mt-6 px-6 py-3 border border-black hover:bg-black hover:text-white transition">
+              <a href="https://www.facebook.com/profile.php?id=61578383275908" className="border mt-10 inline-block px-6 py-3 bg-amber-700 text-white rounded-full shadow-lg hover:scale-105 transition"> INQUIRE </a>
+            {/*<button className="mt-6 px-6 py-3 border border-black hover:bg-black hover:text-white transition">
               INQUIRE 
-            </button>
+            </button>*/}
           </div>
 
           {/* IMAGE */}
@@ -112,7 +163,7 @@ function App() {
           </div>
 
           <div className="flex justify-center mb-10">
-            <div className="bg-white shadow-md rounded-full p-2 flex gap-2">
+            <div className="bg-amber-100 shadow-md rounded-full p-2 flex gap-2">
               <button onClick={() => setActiveTab("2D")} className={`px-6 py-2 rounded-full font-medium transition ${ activeTab === "2D" ? "bg-amber-600 text-white" : "text-amber-700 hover:bg-amber-100"}`}>
                 2D CAD Drafting
               </button>
@@ -129,7 +180,7 @@ function App() {
 
           {activeTab === "2D" && (
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white p-8 rounded-2xl shadow-md">
+              <div className="bg-amber-100 p-8 rounded-2xl shadow-md">
                 <h3 className="text-xl font-semibold text-amber-600 mb-4">Services Included</h3>
                 <ul className="space-y-2 text-amber-700">
                   <li>Mechanical</li>
@@ -141,11 +192,11 @@ function App() {
                 </ul>
                     <div className="mt-6">
                       <p className="text-sm text-amber-900">Tools used:</p>
-                      <span className="inline-block mt-12 bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">AutoCAD</span>
+                      <span className="inline-block mt- bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">AutoCAD</span>
                     </div>
               </div> 
 {/* PRICCEEEEEE */}
-              <div className="bg-white p-8 rounded-2xl shadow-md">
+              <div className="bg-amber-100 p-8 rounded-2xl shadow-md">
                 <h3 className="text-xl font-semibold">Rates</h3>
                   <div className="space-y-4">
                     <div className="border p-4 rounded-lg">
@@ -174,7 +225,7 @@ function App() {
               {activeTab === "3D" && (
                 <div className="grid md:grid-cols-2 gap-8">
               {/* SERVICEEEEE */}
-              <div className="bg-white p-8 rounded-2xl shadow-md">
+              <div className="bg-amber-100 p-8 rounded-2xl shadow-md">
                 <h3 className="text-xl font-semibold text-amber-600 mb-4">Services Included</h3>
                 <ul className="space-y-2 text-amber-600">
                   <li>Interior Rendering</li>
@@ -191,7 +242,7 @@ function App() {
                 </div>
               </div>
               {/*price ng 3d service*/}
-                <div className="bg-white p-8 rounded-2xl">
+                <div className="bg-amber-100 p-8 rounded-2xl">
                   <h3 className="text-xl font-semibold text-amber-800 mb-4">Rates</h3>
                     <div className="space-y-4">
                       <div className="border p-4 rounded-lg">
@@ -220,17 +271,96 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS */}
+      <section id="works" className="min-h-screen px-6 py-20 bg-orange-50">
+          <div className="max-w-6xl mx-auto">
+            {/* TITLE */}
+            <h2 className="text-3xl font-bold text-center mb-12">Works</h2>
+            {/* ================= CATEGORIES ================= */}
+            {view === "categories" && (
+              <div className="grid md:grid-cols-3 gap-6">
+
+                {categories.map((cat, i) => (
+                  <div key={i} onClick={() => { setSelectedCategory(cat.name); setView("gallery");}}
+                    className="cursor-pointer relative rounded-2xl overflow-hidden group shadow">
+                    <img src={cat.image} className="w-full h-48 object-cover group-hover:scale-110 transition duration-300"/>
+
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <h3 className="text-white text-lg font-bold">{cat.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* ================= GALLERY ================= */}
+            {view === "gallery" && (
+              <div>
+                <button onClick={() => setView("categories")} className="mb-6 text-orange-500 font-semibold">
+                  ← Back
+                </button>
+
+                <h3 className="text-2xl font-bold mb-6">
+                  {selectedCategory}
+                </h3>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  {worksData[selectedCategory]?.map((img, i) => (
+                    <img key={i} src={img} onClick={() => setSelectedImage(img)}
+                      className="cursor-pointer rounded-xl object-cover h-60 w-full hover:scale-105 transition"/>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* ================= MODAL (FULL HD VIEW) ================= */}
+            {selectedImage && (
+              <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={() => setSelectedImage(null)}>
+                <img src={selectedImage} className="max-w-full max-h-full object-contain rounded-lg" onClick={(e) => e.stopPropagation()} // prevent closing when clicking image
+                />
+              </div>
+            )}
+          </div>
+    </section>
+    
+      {/* WORKS 
       <section id="works" className="min-h-screen px-6 py-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center" data-aos="fade-up">Works</h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[1,2,3,4,5,6].map((item) => (
-              <div key={item} data-aos="zoom-in" className="h-62.5 bg-gray-200 flex items-center justify-center">fgvfd</div>))}
+          <div className="space-x-4 space-y-4 md:grid md:grid-cols-2 grid grid-rows-1">
+
+              <div className="justify-center border rounded-2xl" data-aos="zoom-in">
+                <h1 className="text-center p-2 m-2 md:m-2 md:p-2">INTERIOR</h1>
+                  <div className="grid grid-cols-2 gap-4 p-2 m-2">
+                    <img src={int1} alt="wanloob" className="rounded-lg" />
+                    <img src={int2} alt="tuloob" className="rounded-lg " />
+                  </div>
+              </div>
+
+              <div className="justify-center border rounded-2xl" data-aos="zoom-in">
+                <h1 className="text-center p-2 m-2 md:m-2 md:p-2">EXTERIOR</h1>
+                  <div className="grid grid-cols-2 gap-4 p-2 m-2">
+                    <img src={ext1} alt="waneks" className="rounded-lg" />
+                  </div>
+              </div>
+
+              <div className="justify-center border rounded-2xl" data-aos="zoom-in">
+                <h1 className="text-center p-2 m-2 md:m-2 md:p-2">MECHANICAL</h1>
+                  <div className="grid grid-cols-2 gap-4 p-2 m-2">
+                    <img src={mech1} alt="wanmek" className="rounded-lg " />
+                  </div>
+              </div>
+
+              <div className="justify-center border rounded-2xl" data-aos="zoom-in">
+                <h1 className="text-center p-2 m-2 md:m-2 md:p-2">ELECTRICAL</h1>
+                  <div className="grid grid-cols-2 gap-4 p-2 m-2">
+                    <img src={elec1} alt="wanelek" className="rounded-lg " />
+                  </div>
+              </div>
+
           </div>
+
         </div>
-      </section>
+      </section>*/}
 
       {/* REVIEWS */}
       <section id="reviews" className="min-h-screen px-6 py-20">
